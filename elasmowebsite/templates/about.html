@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="img-fluid" id="aboutBanner" style="background-image: url(static/img/banners/about_banner.jpeg);">
+    <h1>ABOUT</h1>
+</div>
+<br>
+<p class="aboutContent">Purpose:</p>
+<p class="aboutSubContent">The purpose of Elasmo-Analysis is to provide the public with educational resources pertaining to the analysis of shark-related data, conservation efforts, and general facts about sharks.</p>
+<p class="aboutContent">Why are sharks important?</p>
+<p class="aboutSubContent">Sharks are a keystone species and the apex predators of our oceans. This means that sharks affect and maintain the structure of oceanic ecosystems. Without sharks, the entire food web would collapse and result in negative effects on both marine and land organisms.</p>
+<p class="aboutContent">How can you help?</p>
+<ul>
+    <li>Check out our <a id="recLink" href="{% url 'resources' %}">resources</a> page!</li>
+    <li>Volunteer with shark and ocean conservation organizations.</li>
+    <li>Donate to shark and ocean conservation organizations.</li>
+    <li>Educate yourself as much as you can.</li>
+    <li>Spread awareness to others.</li>
+    <li>Decrease your use of single-use plastics as they get into our waterways and can disrupt natural processes pertaining to sharks.</li>
+    <li>Avoid purchasing and using shark products.</li>
+</ul>
+{% endblock %}

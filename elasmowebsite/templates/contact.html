@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="img-fluid" id="aboutBanner" style="background-image: url(static/img/banners/contact_banner.jpeg);">
+    <h1>Contact</h1>
+</div>
+<br>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+<div id="message" class="collapse show">
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+    </div>
+</div>
+<div id="formSubmit">
+    <button id="contactSubmit" class="form-control">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+        </svg>
+        <p id="submit">Sent!</p>
+    </button>
+    <p class="formSubmitDesc" id="desc">For privacy purposes, this form is just a display; <b>email was not actually sent</b>. To get in touch with the developer, please contact them <a id="listLink" href="https://www.linkedin.com/in/damariscrews/" target="_blank">here</a>. Thanks!</p>
+    <p class="formSubmitDesc" id="submitFail">Email or message not entered.</p>
+    <p class="formSubmitDesc" id="noSymbol">Email missing '@' or '.com'</p>
+</div>
+<script>
+    let email = '#exampleFormControlInput1';
+    let message = '#exampleFormControlTextarea1';
+    let button = '#contactSubmit';
+    let failed = '#submitFail';
+    let symbolEnd = '#noSymbol';
+
+    $(button).click(function() {
+        if ($(message).val() != "" && $(email).val() != "") {
+            if($(email).val().includes('@') == true && $(email).val().includes('.com') == true) {
+                $(button).css("background-color", "rgba(114, 247, 185, 0.6)");
+                $('#submit').css("display", "block");
+                $('#desc').css("display", "block");
+                $('#message').collapse('hide');
+                $(failed).css("display", "none");
+                $(symbolEnd).css("display", "none");
+                $(button).prop("disabled", "true");
+                $(email).prop("disabled", "true");
+            } else {
+                $(symbolEnd).css("display", "block")
+            } 
+        } else{
+            $(button).css("background-color", "red");
+            $(failed).css("display", "block");
+            $(symbolEnd).css("display", "none")
+        }
+    });
+</script>
+{% endblock %}

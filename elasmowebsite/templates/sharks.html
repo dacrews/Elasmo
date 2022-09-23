@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="img-fluid" id="aboutBanner" style="background-image: url(static/img/banners/shark_banner.jpeg);">
+    <h1>SHARK SPECIES</h1>
+</div>
+<br>
+<p style="text-align: center;">Currently, there are over 500 <b>discovered</b> shark species. This page will list ten common and well known species.</p>
+<ul>
+    <li id="listTitle">Reef Sharks: Sharks that typically inhabit reef ecosystems.</li>
+        <span class="listLink"><li><a id="listLink" href="#nurse">Nurse Shark</a></li></span>
+        <span class="listLink"><li><a id="listLink" href="#white">Whitetip Reef Shark</a></li></span>
+        <span class="listLink"><li><a id="listLink" href="#sand">Sandbar Shark</a></li></span>
+        <span class="listLink"><li><a id="listLink" href="#black">Blacktip Reef Shark</a></li></span>
+        <span class="listLink"><li><a id="listLink" href="#gala">Galapagos Shark</a></li></span>
+    <li id="listTitle">Pelagic Sharks: Sharks that roam the open oceans.</li>
+        <span class="listLink"><li><a id="listLink" href="#whale">Whale Shark</a></li></span>
+        <span class="listLink"><li><a id="listLink" href="#great">Great White Shark</a></li></span>
+        <span class="listLink"><li><a id="listLink" href="#thresh">Thresher Shark</a></li></span>
+        <span class="listLink"><li><a id="listLink" href="#blue">Blue Shark</a></li></span>
+        <span class="listLink"><li><a id="listLink" href="#oceanic">Oceanic Whitetip Shark</a></li></span>
+</ul>
+<br>
+<table>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/nurse.jpg" height="400px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="nurse">{{ d.0.title }}</h4><p>{{ d.0.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/white.jpg" height="400px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="white">{{ d.1.title }}</h4><p>{{ d.1.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/sand.jpg" height="300px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="sand">{{ d.2.title }}</h4><p>{{ d.2.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/black.jpg" height="400px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="black">{{ d.3.title }}</h4><p>{{ d.3.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/gala.jpg" height="400px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="gala">{{ d.4.title }}</h4><p>{{ d.4.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/whale.jpg" height="300px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="whale">{{ d.5.title }}</h4><p>{{ d.5.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/great.jpg" height="400px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="great">{{ d.6.title }}</h4><p>{{ d.6.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/thresh.jpg" height="400px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="thresh">{{ d.7.title }}</h4><p>{{ d.7.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/blue.jpg" height="400px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="blue">{{ d.8.title }}</h4><p>{{ d.8.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/oceanic.jpg" height="400px" width="500px"></th>
+        <td>
+            {% for d in data %}
+                <h4 class="sharkTitle" id="oceanic">{{ d.9.title }}</h4><p>{{ d.9.content }}</p>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+{% endblock %}

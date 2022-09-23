@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+
+<!-- Leaflet Plugins -->
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<link rel="stylesheet" href="static/src/leaflet.legend.css">
+<script src="static/src/leaflet.legend.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+<div class="img-fluid" id="aboutBanner" style="background-image: url(static/img/banners/data_banner.jpeg);">
+    <h1>DATA & RESEARCH</h1>
+</div>
+<br>
+<p>Research studies and data collection are instrumental to the preservation and conservation of sharks. Thankfully, universities, governments, and non-governmental organizations around the world devote a lot of resources to shark research. The research and data collection performed by these organizations allows us to better understand these marvelous animals. Here are some publications that demonstrate how beneficial these efforts can be:</p>
+<ul>
+    <li><a class="contentLink" href="https://link.springer.com/chapter/10.1007/978-94-017-3245-1_12" target="_blank"> Shark tagging: a review of conventional methods and studies </a></li>
+    <li><a class="contentLink" href="https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/j.1755-263X.2008.00046.x" target="_blank">Reassessing the value of nursery areas to shark conservation and management</a></li>
+    <li><a class="contentLink" href="https://www.int-res.com/abstracts/meps/v408/p275-293/" target="_blank">Complexities of coastal shark movements and their implications for management</a></li>
+    <li><a class="contentLink" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1461-0248.2010.01489.x" target="_blank">Patterns and ecosystem consequences of shark declines in the ocean</a></li>
+    <li><a class="contentLink" href="https://onlinelibrary.wiley.com/doi/full/10.1111/jeb.12405" target="_blank">The effect of habitat on modern shark diversification</a></li>
+</ul>
+<p class="aboutContent">Data Visualization of Tracking Efforts</p>
+<p style="color: red;">Data used for these web maps is attributed to Ocean Tracking Network (OTN) and the data providers (authors) specified above each web map. Neither OTN nor data providers are liable for inaccuracies in the data.</p>
+
+<p class="webMapTitle">OTN NS Blue Shark Tracking</p>
+<p>
+    Abstract:<br>
+    "In the Northwest Atlantic, the Ocean Tracking Network (OTN), in collaboration with Dalhousie University, is using an acoustic telemetry infrastructure to monitor the habitat use, movements, and survival of juvenile blue sharks (Prionace glauca). This infrastructure includes state-of-the-art acoustic receivers and oceanographic monitoring equipment, and autonomous marine vehicles carrying oceanographic sensors and mobile acoustic receivers. Long-life acoustic tags (n=40) implanted in the experimental animals will provide long-term spatial resolution of shark movements and distribution, trans-boundary migrations, site fidelity, and the species’ response to a changing ocean. This study will facilitate interspecific comparisons, documentation of intra- and interspecific interactions, and permit long-term monitoring of this understudied predator in the Northwest Atlantic. The study will also provide basic and necessary information to better inform fisheries managers and policy makers. This is pertinent given the recent formulation of the Canadian Plan of Action for Shark Conservation."<br>
+    <br>
+    Authors:<br>
+    Fred Whoriskey & Brendal Davis<br>
+    <br>
+    <a class="contentLink" href="https://members.oceantrack.org/project?ccode=NSBS" target="_blank">Source</a>
+</p>
+<div id="map_blueshark"></div>
+
+<p class="webMapTitle">DFO: Porbeagle and Blue Sharks</p>
+<p>
+    Abstract:<br>
+    "To determine movements of porbeagle and blue sharks in Canadian waters and to see if they cross over the US/Canadian border to American waters. The data would help with future management of both species."<br>
+    <br>
+    Authors:<br>
+    Heather Bowlby, Fred Whoriskey, & Warren Joyce<br>
+    <br>
+    <a class="contentLink" href="https://members.oceantrack.org/project?ccode=JPBS" target="_blank">Source</a>
+</p>
+<div id="map_porblue"></div>
+
+<p class="webMapTitle">Ponta do Ouro Zambezi Shark Tracking</p>
+<p>
+    Abstract:<br>
+    "The spatial ecology of apex predatory shark species is important to understand when considering their role in structuring marine communities and proposing effective conservation strategies. Quantifying the movement behaviour of these large predatory sharks is important for understanding the associated spatial and temporal scales over which these sharks can influence marine communities. Elucidating the role of these top predatory sharks in marine communities is also becoming increasingly important as top marine predatory populations are continually under threat from overexploitation. In this study, passive acoustic telemetry will be used to investigate the habitat use and connectivity of bull sharks and tiger sharks between southern Mozambique and South Africa."<br>
+    <br>
+    Authors:<br>
+    Paul Cowley & Ryan Daly<br>
+    <br>
+    <a class="contentLink" href="https://members.oceantrack.org/project?ccode=SAF.POZS" target="_blank">Source</a>
+</p>
+<div id="map_zambezi"></div>
+
+<script>
+    //  ADD BUTTTON TO RESET ZOOM, ADD BUTTON TO FULL SCREEN, ADD LEGENDS, ADD MEASURE
+
+    // Varibales
+    let markerPorblue;
+    let markerBlueshark;
+    let markerZambezi
+    let strPopup;
+    let csv;
+    let legend;
+    let legend2;
+    let resetZoom;
+
+    // Initialize maps
+    let map_porblue = L.map('map_porblue').setView([43.31, -64.86], 7);
+    let map_zambezi = L.map('map_zambezi').setView([-26.85, 32.89], 10);
+    let map_blueshark = L.map('map_blueshark').setView([44.27, -63.20], 10);
+    
+    // Basemap
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map_porblue);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map_zambezi);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map_blueshark);
+
+    // Create marker clusters
+    let markersPorblue = L.markerClusterGroup({
+        showCoverageOnHover: false
+    });
+
+    let markersBlueshark = L.markerClusterGroup({
+        showCoverageOnHover: false
+    });
+
+    let markersZambezi = L.markerClusterGroup({
+        showCoverageOnHover: false
+    });
+
+    // Porblue map
+    {% for point in porbblue %}
+        // Markers
+        markerPorblue = L.marker([{{ point.latitude }}, {{ point.longitude }}]).bindPopup(strPopup, {closeButton: false}); //.addTo(map_porblue);
+        markersPorblue.addLayer(markerPorblue);
+
+        // Popups
+        strPopup = "<h4><center><b> {{ point.common_name }} </b></center><hr></h4>";
+            strPopup += "<p>Scientific Name: {{ point.scientific_name }} </p>";
+            strPopup += "<p>Sex: {{ point.sex }} </p>";
+            strPopup += "<p>Life Stage: {{ point.life_stage }}</p>";
+            strPopup += "<p>Length: {{ point.length_meters }}  meters</p>";
+            strPopup += "<p>Locality: {{ point.locality }}</p>";
+            strPopup += "<p>Collected by {{ point.collector }} on {{ point.date }}</p>";
+    {% endfor %}
+
+    map_porblue.addLayer(markersPorblue);
+
+    // Zambezi map
+    {% for point in zambezi %}
+        // Markers
+        markerZambezi = L.marker([{{ point.latitude }}, {{ point.longitude }}]).bindPopup(strPopup, {closeButton: false}); //.addTo(map_porblue);
+        markersZambezi.addLayer(markerZambezi);
+
+        // Popups
+        strPopup = "<h4><center><b> {{ point.common_name }} </b></center><hr></h4>";
+            strPopup += "<p>Scientific Name: {{ point.scientific_name }} </p>";
+            strPopup += "<p>Locality: {{ point.locality }}</p>";
+            strPopup += "<p>Collected by {{ point.collector }} on {{ point.date }}</p>";
+    {% endfor %}
+
+    map_zambezi.addLayer(markersZambezi);
+
+    //Blueshark map
+    {% for point in blueshark %}
+        // Markers
+        markerBlueshark = L.marker([{{ point.latitude }}, {{ point.longitude }}]).bindPopup(strPopup, {closeButton: false}).addTo(map_blueshark);
+
+        // Popups
+        strPopup = "<h4><center><b> {{ point.common_name }} </b></center><hr></h4>";
+            strPopup += "<p>Scientific Name: {{ point.scientific_name }} </p>";
+            strPopup += "<p>Sex: {{ point.sex }} </p>";
+            strPopup += "<p>Life Stage: {{ point.life_stage }}</p>";
+            strPopup += "<p>Length: {{ point.length_meters }}  meters</p>";
+            strPopup += "<p>Locality: {{ point.locality }}</p>";
+            strPopup += "<p>Collected by {{ point.collector }} on {{ point.date }}</p>";
+    {% endfor %}
+
+    // Plugins
+    legend = L.control.Legend({
+        position: "bottomleft",
+        title: "Map Legend",
+        collapsed: false,
+        legends: [{
+            label: "Tagged Shark Location",
+            type: "image",
+            url: "static/img/marker.png",
+            opacity: "1",
+        }]
+    }).addTo(map_blueshark);
+
+    legend2 = L.control.Legend({
+        position: "bottomleft",
+        title: "Map Legend",
+        collapsed: false,
+        legends: [{
+            label: "Tagged Shark Location",
+            type: "image",
+            url: "static/img/marker.png",
+            opacity: "1",
+        }, {
+            label: "Tagged Group",
+            type: "circle",
+            color: "rgba(223, 37, 78, 0.6)",
+            fillColor: "rgba(223, 37, 78, 0.6)",
+        }]
+    }).addTo(map_zambezi);
+
+    legend2 = L.control.Legend({
+        position: "bottomleft",
+        title: "Map Legend",
+        collapsed: false,
+        legends: [{
+            label: "Tagged Shark Location",
+            type: "image",
+            url: "static/img/marker.png",
+            opacity: "1",
+        }, {
+            label: "Tagged Group",
+            type: "circle",
+            color: "rgba(223, 37, 78, 0.6)",
+            fillColor: "rgba(223, 37, 78, 0.6)",
+        }]
+    }).addTo(map_porblue);
+
+    resetZoom = L.easyButton('fa-solid fa-arrow-rotate-left', function(btn, map_blueshark) {
+        map_blueshark.setView([44.27, -63.20], 10);
+    }, 'Reset Zoom').addTo(map_blueshark);
+
+    resetZoom = L.easyButton('fa-solid fa-arrow-rotate-left', function(btn, map_zambezi) {
+        map_zambezi.setView([-26.85, 32.89], 10);
+    }, 'Reset Zoom').addTo(map_zambezi);
+
+    resetZoom = L.easyButton('fa-solid fa-arrow-rotate-left', function(btn, map_porblue) {
+        map_porblue.setView([43.31, -64.86], 7);
+    }, 'Reset Zoom').addTo(map_porblue);
+
+
+</script>
+
+{% endblock %}

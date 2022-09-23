@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" id="blockContainer">
+    <div class="img-fluid" id="banner" style="background-image: url(static/img/banners/banner_image.jpg);">
+        <div id="bannerContent">
+            <h1><strong>ELASMO-ANALYSIS</strong></h1>
+            <p>A place to learn about sharks and discover interesting data visualization!</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" class="img-fluid" id="dataLink" style="background-image: url(static/img/data_link.jpg);">
+            <a class="blockContLink" href="{% url 'data' %}">
+                <p class="linkPara">Data & Research</p>
+            </a>
+        </div>
+        <div class="col" class="img-fluid" id="identLink" style="background-image: url(static/img/shark_link.jpeg);">
+            <a class="blockContLink" href="{% url 'sharks' %}">
+                <p class="linkPara">Shark Species</p>
+            </a>
+        </div>
+        <div class="col" class="img-fluid" id="resourcesLink" style="background-image: url(static/img/resources_link.jpeg);">
+            <a class="blockContLink" href="{% url 'resources' %}">
+                <p class="linkPara">Resources</p>
+            </a>
+        </div>
+    </div>
+  </div>
+{% endblock %}

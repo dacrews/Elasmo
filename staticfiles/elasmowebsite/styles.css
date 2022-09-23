@@ -1,0 +1,359 @@
+body {
+    font-family: 'Ubuntu', sans-serif !important;
+    display: flex;
+}
+
+table {
+    border-spacing: 0px 25px;
+    border-collapse: separate !important;
+}
+
+a {
+    color: rgb(173, 173, 173) !important;
+    text-decoration: none !important;
+}
+
+.navbar {
+    position: fixed !important;
+    top: 0px;
+    width: auto;
+    display: block !important;
+    z-index: 999;
+    box-shadow: 5px 0px 10px 0px #999;
+    text-align: center;
+    height: 100vh;
+    align-items: flex-start !important;
+}
+
+.navbar .container-fluid, .navbar-expand-lg .navbar-collapse, .navbar-expand-lg .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.navbar-brand {
+    color: white !important;
+    margin: auto !important;
+}
+
+.nav-item {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.contentLink {
+    color: rgb(77, 77, 221) !important;
+}
+
+.dropdown-item:hover, .contentLink:hover {
+    color: black !important;
+    border-bottom: 1px solid black;
+}
+
+.col {
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+}
+
+/* 
+
+Homepage 
+
+*/
+
+#banner {
+    height: 700px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#bannerContent {
+    position: absolute;
+    margin: 300px 15px 0px 15px;
+    color: white;
+}
+
+#bannerContent h1 {
+    font-size: 4rem;
+}
+
+#bannerContent p {
+    font-size: 1.5rem;
+}
+
+#bodyContainer {
+    position: relative;
+    left: 50px;
+}
+
+#blockContainer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#dataLink, #identLink, #resourcesLink {
+    height: 200px;
+    width: 33%;
+    margin: 15px;
+    opacity: .8;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#dataLink:hover, #identLink:hover, #resourcesLink:hover {
+    opacity: 1;
+}
+
+.blockContLink {
+    display: table;
+    margin: auto;
+    height: 100%;
+}
+
+.linkPara {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* 
+
+About
+
+*/
+
+#aboutBanner {
+    height: 400px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    margin-top: 15px;
+    display: table;
+    background-position: center;
+}
+
+#aboutBanner h1 {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.aboutContent {
+    font-size: 2rem;
+}
+
+.aboutSubContent {
+    margin-left: 15px;
+}
+
+#recLink:hover {
+    text-decoration: underline !important;
+    color: black !important;
+}
+
+/*
+
+Data
+
+*/
+
+.webMapTitle {
+    font-size: 1.5rem;
+}
+
+#map_porblue, #map_zambezi, #map_blueshark {
+    height: 700px !important;
+    width: 100% !important;
+    margin-bottom: 30px;
+}
+
+.marker-cluster-small div, .marker-cluster-medium div {
+    background-color: rgba(223, 37, 78, 0.6) !important;
+    border-radius: 50px;
+    height: 30px !important;
+    width: 30px !important;
+    text-align: center;
+}
+
+.leaflet-legend-item span {
+    padding-left: 10px;
+}
+
+.leaflet-legend-contents img {
+    position: relative !important;
+}
+
+.leaflet-bottom, .leaflet-top {
+    z-index: 801 !important;
+}
+
+/*
+
+Resources
+
+*/
+
+#resourcesLin {
+    height: 200px;
+    opacity: .8;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: 200px, 500px;
+    background-position: center;
+    margin-bottom: 30px;
+    opacity: .7;
+}
+
+#resourcesLin:hover {
+    opacity: 1;
+}
+
+/*
+
+Sharks
+
+*/
+
+.tableHead {
+    width: 40%;
+    height: 100px;
+    border-radius: 5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#listTitle {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+.listLink {
+    position: relative;
+    left: 30px;
+}
+
+#listLink:hover {
+    color: black !important;
+}
+
+.sharkTitle {
+    text-align: center;
+}
+
+/*
+
+Contact
+
+*/
+
+#contactSubmit {
+    width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
+#contactSubmit:hover {
+    background-color: rgba(114, 187, 247, 0.6);
+}
+
+#submit {
+    margin-bottom: 0px;
+    display: none;
+}
+
+#formSubmit {
+    text-align: center;
+}
+
+.formSubmitDesc {
+    display: none;
+    margin-top: 10px;
+    color: red;
+}
+
+/*
+
+Responsive Styles
+
+*/
+
+@media screen and (max-width: 480px) {
+    body {
+        margin: auto;
+        display: flex;
+    }
+
+    table tr{
+        display: inline-grid;
+    }
+
+    .navbar {
+        width: 100vw;
+        height: auto;
+    }
+
+    .navbar-brand{
+        display: none;
+    }
+
+    .nav-item {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .tableHead {
+        width: 100%;
+        height: auto;
+    }
+
+    #banner, #aboutBanner {
+        margin-top: 70px;
+    }
+
+    #bodyContainer {
+        left: 0px;
+    }
+
+    #resourcesLink {
+        margin-top: 0px;
+    }
+
+    #resourcesLin {
+        margin-bottom: 0px;
+        background-size: 90px, 0px;
+        opacity: 1;
+    }
+
+    #listLink {
+        pointer-events: none;
+    }
+
+    .leaflet-popup-content {
+        width: 200px;
+    }
+
+    #map_porblue, #map_blueshark, #map_zambezi {
+        height: 550px !important;
+        width: 100% !important;
+        margin-bottom: 30px;
+        z-index: 2;
+    }
+}
