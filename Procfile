@@ -1,1 +1,0 @@
-web: gunicorn elasmo.wsgi --log-file -
