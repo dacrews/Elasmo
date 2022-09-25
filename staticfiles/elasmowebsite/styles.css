@@ -1,6 +1,5 @@
 body {
     font-family: 'Ubuntu', sans-serif !important;
-    display: flex;
 }
 
 table {
@@ -13,37 +12,8 @@ a {
     text-decoration: none !important;
 }
 
-.navbar {
-    position: fixed !important;
-    top: 0px;
-    width: auto;
-    display: block !important;
-    z-index: 999;
-    box-shadow: 5px 0px 10px 0px #999;
-    text-align: center;
-    height: 100vh;
-    align-items: flex-start !important;
-}
-
-.navbar .container-fluid, .navbar-expand-lg .navbar-collapse, .navbar-expand-lg .navbar-nav {
-    flex-direction: column;
-    align-items: flex-start !important;
-    margin-right: auto;
-    margin-left: auto;
-}
-
 .nav-link:hover {
     color: white !important;
-}
-
-.navbar-brand {
-    color: white !important;
-    margin: auto !important;
-}
-
-.nav-item {
-    margin-top: 15px;
-    margin-bottom: 15px;
 }
 
 .contentLink {
@@ -52,6 +22,7 @@ a {
 
 .dropdown-item:hover, .contentLink:hover {
     color: black !important;
+    border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
 
@@ -90,10 +61,10 @@ Homepage
     font-size: 1.5rem;
 }
 
-#bodyContainer {
+/* #bodyContainer {
     position: relative;
     left: 50px;
-}
+} */
 
 #blockContainer {
     margin-left: auto;
@@ -298,27 +269,12 @@ Responsive Styles
 @media screen and (max-width: 480px) {
     body {
         margin: auto;
-        display: flex;
     }
 
     table tr{
         display: inline-grid;
     }
 
-    .navbar {
-        width: 100vw;
-        height: auto;
-    }
-
-    .navbar-brand{
-        display: none;
-    }
-
-    .nav-item {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-    
     .tableHead {
         width: 100%;
         height: auto;
