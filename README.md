@@ -57,7 +57,9 @@ def sharks(request):
 This code utilized the [Wikipedia API](https://pypi.org/project/Wikipedia-API/) to extract text from the wikipedia pages of each shark species. Once extracted, I added the text to a table in my sharks.html template.
 ```html
 <tr>
-    <th class="tableHead" id="t1"><img class="img-fluid" src="static/img/sharks/nurse.jpg" height="400px" width="500px"></th>
+    <th class="tableHead" id="t1">
+        <img class="img-fluid" src="static/img/sharks/nurse.jpg" height="400px" width="500px">
+    </th>
     <td>
         {% for d in data %}
             <h4 class="sharkTitle" id="nurse">{{ d.0.title }}</h4>
