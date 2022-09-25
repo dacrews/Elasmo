@@ -11,7 +11,7 @@ The main purpose of Elasmo is to provide site visitors with a deeper understandi
 This project was important to me because throughout my childhood, my dream was to work with sharks in some capacity. I had fun developing Elasmo since it felt as though I was combining an old passion with a more recent one: software development.
 
 ### Technologies Used
-* Framework: Django, Bootstrap
+* Frameworks: Django, Bootstrap
 * Libraries: Leaflet, jQuery
 * Languages: HTML, CSS, JavaScript, Python
 * Database: SQLite3
