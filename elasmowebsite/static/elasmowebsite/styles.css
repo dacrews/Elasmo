@@ -1,6 +1,5 @@
 body {
     font-family: 'Ubuntu', sans-serif !important;
-    display: flex;
 }
 
 table {
@@ -23,8 +22,8 @@ a {
 
 .dropdown-item:hover, .contentLink:hover {
     color: black !important;
-    border-bottom: 1px solid black;
     border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .col {
@@ -62,10 +61,10 @@ Homepage
     font-size: 1.5rem;
 }
 
-#bodyContainer {
+/* #bodyContainer {
     position: relative;
     left: 50px;
-}
+} */
 
 #blockContainer {
     margin-left: auto;
@@ -270,7 +269,6 @@ Responsive Styles
 @media screen and (max-width: 480px) {
     body {
         margin: auto;
-        display: flex;
     }
 
     table tr{
